@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>MAGIC Game Timer</title>
+  <script src="js/timer.js"></script>
+</head>
+
+<style>
+ul {
+  list-style-type: none
+}
+</style>
+
+<body>
+  <form name="timer">
+    <ul>
+      <li>
+        <p>
+        ご利用方法について。ゲーム時間を分数で設定し、スタートボタンを押すことでタイマーが起動します。
+        １分ごとに残り時間を音声でお知らせします。
+        スタート後はボタンが押せなくなるので、途中で再設定したい場合は、ブラウザをリロードしてください。
+        また、ご利用前にサウンドテストのボタンにより、音声が出るか確認してください。
+        </p>
+      </li>
+      <li>
+        <label for="minutes">タイマー設定分数</label>
+        <input type="text" id="minutes" value="10">
+      </li>
+      <li>
+        <input type="button" value="スタート" id="start" onclick="startTimer()">
+      </li>
+      <li>
+        <div id="remaining">残り0分0秒</div>
+      </li>
+      <li>
+        <input type="button" value="サウンドテスト" onclick="testSound()">
+      </li>
+  </form>
+</body>
+</html>
+
