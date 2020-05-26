@@ -48,10 +48,10 @@ function update() {
     if (seconds == 59) {
       sound("sound.mp3", "残り時間" + (minutes + 1) + "分です");
     }
+
     if (seconds == 30) {
       sound("sound.mp3", (seconds) + "秒経過");
     }
-  
-}
+  }
 }
 
