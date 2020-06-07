@@ -1,5 +1,5 @@
 let timer;
-let remaining = 0;
+let remainingSeconds = 0;
 
 function sound(fname, msg) {
   let audio = new Audio();
@@ -14,15 +14,31 @@ function testSound() {
   sound("sound.mp3", "音声テストです");
 }
 
+function stopTimer() {
+  const startButton = document.getElementById('start');
+  startButton.disabled = false;
+  const stopButton = document.getElementById('stop');
+  stopButton.disabled = true;
+  sound("sound.mp3", "タイマーを一時停止しました");
+
+  clearInterval(timer);
+}
+
 function startTimer() {
   const startButton = document.getElementById('start');
   startButton.disabled = true;
+  const stopButton = document.getElementById('stop');
+  stopButton.disabled = false;
 
-  const minutes = parseInt(document.getElementById('minutes').value);
-  const seconds = parseInt(document.getElementById('seconds').value);
-  remainingSeconds = minutes*60+seconds;
+  if (remainingSeconds == 0) {
+    const minutes = parseInt(document.getElementById('minutes').value);
+    const seconds = parseInt(document.getElementById('seconds').value);
+    remainingSeconds = minutes*60+seconds;
+    sound("gong-played1.mp3", "");
 
-  sound("gong-played1.mp3", "");
+  } else {
+    sound("sound.mp3", "タイマーを再開しました");
+  }
 
   timer = setInterval(async () => {
     update();
@@ -42,15 +58,13 @@ function update() {
 
     const startButton = document.getElementById('start');
     startButton.disabled = false;
+    const stopButton = document.getElementById('stop');
+    stopButton.disabled = true;
     clearInterval(timer);
 
   } else {
     if (seconds == 59) {
       sound("sound.mp3", "残り時間" + (minutes + 1) + "分です");
-    }
-
-    if (seconds == 30) {
-      sound("sound.mp3", (seconds) + "秒経過");
     }
   }
 }
